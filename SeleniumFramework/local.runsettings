@@ -1,0 +1,10 @@
+<RunSettings>
+  <RunConfiguration>
+    <TargetPlatform>x64</TargetPlatform>
+    <TargetFrameworkVersion>Framework45</TargetFrameworkVersion>
+  </RunConfiguration>
+  <TestRunParameters>
+    <Parameter name="localBrowser" value="chrome" />
+    <Parameter name="localEnv" value="prod" />
+  </TestRunParameters>
+</RunSettings>
