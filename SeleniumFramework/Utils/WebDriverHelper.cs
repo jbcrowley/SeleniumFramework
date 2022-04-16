@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using System;
 
 namespace SeleniumFramework.Utils
@@ -27,6 +28,8 @@ namespace SeleniumFramework.Utils
             {
                 case "chrome":
                     return new ChromeDriver();
+                case "edge":
+                    return new EdgeDriver();
                 default:
                     throw new ArgumentOutOfRangeException($"{browser} is not a defined browser type.");
             }
