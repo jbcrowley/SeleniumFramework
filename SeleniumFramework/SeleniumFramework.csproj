@@ -141,6 +141,8 @@
     <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.100.0.4896.6000\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.100.0.4896.6000\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.MSEdgeDriver.100.0.1185.36\build\Selenium.WebDriver.MSEdgeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.MSEdgeDriver.100.0.1185.36\build\Selenium.WebDriver.MSEdgeDriver.targets'))" />
   </Target>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.100.0.4896.6000\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.100.0.4896.6000\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.MSEdgeDriver.100.0.1185.36\build\Selenium.WebDriver.MSEdgeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.MSEdgeDriver.100.0.1185.36\build\Selenium.WebDriver.MSEdgeDriver.targets')" />
 </Project>
