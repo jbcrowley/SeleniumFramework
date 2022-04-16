@@ -1,5 +1,5 @@
+using NUnit.Framework;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("SeleniumFramework")]
@@ -15,6 +15,6 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("5049e14a-60ea-4be0-a650-4839e22ba92f")]
 
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: Parallelizable(ParallelScope.Fixtures)]
