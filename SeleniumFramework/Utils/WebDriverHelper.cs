@@ -12,9 +12,15 @@ namespace SeleniumFramework.Utils
         /// Gets the name of the browser from the NUnit TestContext.
         /// </summary>
         /// <returns>The browser name.</returns>
-        public static string GetBrowserFromTestContext()
+        public static Browser GetBrowserFromTestContext()
         {
-            return TestContext.Parameters.Get("browser")?.ToLower() ?? TestContext.Parameters.Get("localBrowser").ToLower();
+            string browserValue = TestContext.Parameters.Get("browser");
+            if (Enum.TryParse(browserValue, true, out Browser browser))
+            {
+                return browser;
+            }
+
+            throw new ArgumentException($"<{browserValue}> is not a defined browser type.");
         }
 
         /// <summary>
@@ -23,16 +29,25 @@ namespace SeleniumFramework.Utils
         /// <returns>A driver instance.</returns>
         public static IWebDriver GetDriver()
         {
-            string browser = GetBrowserFromTestContext();
+            Browser browser = GetBrowserFromTestContext();
             switch (browser)
             {
-                case "chrome":
+                case Browser.Chrome:
                     return new ChromeDriver();
-                case "edge":
+                case Browser.Edge:
                     return new EdgeDriver();
                 default:
-                    throw new ArgumentOutOfRangeException($"{browser} is not a defined browser type.");
+                    throw new ArgumentException($"{browser} is not defined in GetDriver().");
             }
+        }
+
+        /// <summary>
+        /// A list of supported browsers.
+        /// </summary>
+        public enum Browser
+        {
+            Chrome,
+            Edge
         }
     }
 }

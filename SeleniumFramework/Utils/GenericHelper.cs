@@ -13,26 +13,12 @@ namespace SeleniumFramework.Utils
         /// <returns>The site URL.</returns>
         public static string GetBaseUrl()
         {
-            string environment = GetEnvironment();
-            string url;
-            switch (environment)
-            {
-                case "prod":
-                    url = ConfigurationManager.AppSettings["PRODUrl"];
-                    break;
-                case "qa":
-                    url = ConfigurationManager.AppSettings["QAUrl"];
-                    break;
-                case "uat":
-                    url = ConfigurationManager.AppSettings["UATUrl"];
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"'{environment}' is not a valid environment.");
-            }
+            Environment environment = GetEnvironment();
+            string url = ConfigurationManager.AppSettings[$"{environment}Url"];
 
             if (string.IsNullOrEmpty(url))
             {
-                throw new ArgumentOutOfRangeException($"The '{environment}' environment does not have a valid AppSetting for URL.");
+                throw new ArgumentException($"The <{environment}> environment does not have a URL defined in app.config.");
             }
 
             return url;
@@ -42,9 +28,16 @@ namespace SeleniumFramework.Utils
         /// Gets the run environment from either the value passed through TFS or from the local.runsettings file.
         /// </summary>
         /// <returns>The environment.</returns>
-        public static string GetEnvironment()
+        public static Environment GetEnvironment()
         {
-            return TestContext.Parameters.Get("env")?.ToLower() ?? TestContext.Parameters.Get("localEnv").ToLower();
+            string environmentValue = TestContext.Parameters.Get("environment");
+
+            if (Enum.TryParse(environmentValue, true, out Environment environment))
+            {
+                return environment;
+            }
+
+            throw new ArgumentException($"<{environmentValue}> is not a defined Environment.");
         }
 
         /// <summary>
@@ -63,6 +56,16 @@ namespace SeleniumFramework.Utils
         public static void TakeScreenshot(IWebDriver driver)
         {
             // TODO: Write screenshot code
+        }
+
+        /// <summary>
+        /// A list of environments.
+        /// </summary>
+        public enum Environment
+        {
+            Prod,
+            Qa,
+            Uat
         }
     }
 }
