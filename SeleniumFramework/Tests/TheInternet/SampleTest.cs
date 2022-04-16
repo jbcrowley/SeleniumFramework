@@ -6,7 +6,7 @@ namespace SeleniumFramework.Tests.TheInternet
     public class SampleTest : BaseTest
     {
         [Test]
-        public void TestMethod1()
+        public void SampleTestMethod()
         {
             // TestData contains data specific to this test
             string username = TestData["username"];
