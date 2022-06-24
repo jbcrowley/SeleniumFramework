@@ -6,6 +6,7 @@ namespace SeleniumFramework.Tests.TheInternet
     public class LoginTest : BaseTest
     {
         [Test]
+        [Category("Login")]
         public void Login()
         {
             string username = TestData["username"];
