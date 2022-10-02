@@ -1,15 +1,9 @@
 using Newtonsoft.Json;
-using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SeleniumFramework.TestData;
 using SeleniumFramework.Utils;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Threading;
 
 namespace SeleniumFramework.Tests
 {
@@ -43,7 +37,7 @@ namespace SeleniumFramework.Tests
         [OneTimeSetUp]
         public virtual void OneTimeSetup()
         {
-            Url = GenericHelper.GetBaseUrl() + ConfigurationManager.AppSettings["LandingUrl"];
+            Url = GenericHelper.GetLandingUrl();
         }
 
         [SetUp]

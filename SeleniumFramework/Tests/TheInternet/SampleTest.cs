@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SeleniumFramework.Utils;
+﻿using SeleniumFramework.Utils;
 
 namespace SeleniumFramework.Tests.TheInternet
 {
