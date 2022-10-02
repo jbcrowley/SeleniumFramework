@@ -1,27 +1,34 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
-using System;
-using System.Configuration;
 
 namespace SeleniumFramework.Utils
 {
     class GenericHelper
     {
+        private static string BaseUrl;
+        private static string LandingUrl;
+
         /// <summary>
         /// Gets the URL based on the environment passed as an NUnit parameter.
         /// </summary>
         /// <returns>The site URL.</returns>
         public static string GetBaseUrl()
         {
-            Environment environment = GetEnvironment();
-            string url = ConfigurationManager.AppSettings[$"{environment}Url"];
-
-            if (string.IsNullOrEmpty(url))
+            if (BaseUrl == null)
             {
-                throw new ArgumentException($"The <{environment}> environment does not have a URL defined in app.config.");
+                Environment environment = GetEnvironment();
+                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+                string url = config.GetValue<string>($"Urls:{environment}Url");
+
+                if (string.IsNullOrEmpty(url))
+                {
+                    throw new ArgumentException($"The <{environment}> environment does not have a URL defined in appsettings.json.");
+                }
+
+                BaseUrl = url;
             }
 
-            return url;
+            return BaseUrl;
         }
 
         /// <summary>
@@ -38,6 +45,28 @@ namespace SeleniumFramework.Utils
             }
 
             throw new ArgumentException($"<{environmentValue}> is not a defined Environment.");
+        }
+
+        /// <summary>
+        /// Gets the landing URL, the site all tests will start on.
+        /// </summary>
+        /// <returns>The landing URL.</returns>
+        public static string GetLandingUrl()
+        {
+            if (LandingUrl == null)
+            {
+                IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+                string landingUrl = GetBaseUrl() + config.GetValue<string>($"Urls:LandingUrl");
+
+                if (string.IsNullOrEmpty(landingUrl))
+                {
+                    throw new ArgumentException($"LandingUrl is not defined in appsettings.json.");
+                }
+
+                LandingUrl = landingUrl;
+            }
+
+            return LandingUrl;
         }
 
         /// <summary>
