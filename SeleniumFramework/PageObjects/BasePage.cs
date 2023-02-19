@@ -1,8 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SeleniumFramework.PageObjects
@@ -20,15 +17,15 @@ namespace SeleniumFramework.PageObjects
         /// Clicks the element.
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element (in seconds). The default is 10s.</param>
-        public void Click(By locator, int timeOut = 10)
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
+        public void Click(By locator, int timeOutSeconds = 10)
         {
             DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOut))
+            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
             {
                 try
                 {
-                    new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+                    new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
 
                     return;
                 }
@@ -38,7 +35,7 @@ namespace SeleniumFramework.PageObjects
                 }
             }
 
-            throw new Exception($"Not able to click element <{locator}> within {timeOut}s.");
+            throw new Exception($"Not able to click element <{locator}> within {timeOutSeconds}s.");
         }
 
         /// <summary>
@@ -46,11 +43,11 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <param name="text">The string to be typed.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element (in seconds). The default is 10s.</param>
-        public void SendKeys(By locator, string text, int timeOut = 10)
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
+        public void SendKeys(By locator, string text, int timeOutSeconds = 10)
         {
             DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOut))
+            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
             {
                 try
                 {
@@ -64,7 +61,7 @@ namespace SeleniumFramework.PageObjects
                 }
             }
 
-            throw new Exception($"Not able to .SendKeys() to element <{locator}> within {timeOut}s.");
+            throw new Exception($"Not able to .SendKeys() to element <{locator}> within {timeOutSeconds}s.");
         }
 
         /// <summary>
@@ -91,11 +88,11 @@ namespace SeleniumFramework.PageObjects
         /// Finds a single element using the provided wait condition.
         /// </summary>
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns an IWebElement.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element (in seconds). The default timeOut is 10s.</param>
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>The found element.</returns>
-        public virtual IWebElement FindElement(Func<IWebDriver, IWebElement> waitCondition, int timeOut = 10)
+        public virtual IWebElement FindElement(Func<IWebDriver, IWebElement> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(waitCondition);
+            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>
@@ -112,22 +109,22 @@ namespace SeleniumFramework.PageObjects
         /// Finds all elements using the provided wait condition.
         /// </summary>
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns a boolean.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element (in seconds). The default timeOut is 10s.</param>
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>true if the waitCondition succeeds, false otherwise.</returns>
-        public virtual bool FindElements(Func<IWebDriver, bool> waitCondition, int timeOut = 10)
+        public virtual bool FindElements(Func<IWebDriver, bool> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(waitCondition);
+            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>
         /// Finds all elements using the provided wait condition.
         /// </summary>
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns a collection of IWebElement.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element (in seconds). The default timeOut is 10s.</param>
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>The collection of found elements.</returns>
-        public virtual IReadOnlyCollection<IWebElement> FindElements(Func<IWebDriver, IReadOnlyCollection<IWebElement>> waitCondition, int timeOut = 10)
+        public virtual IReadOnlyCollection<IWebElement> FindElements(Func<IWebDriver, IReadOnlyCollection<IWebElement>> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(waitCondition);
+            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>
@@ -137,9 +134,9 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The text contained in the element.</returns>
         public virtual string GetText(By locator)
         {
-            int timeOut = 10;
+            int timeOutSeconds = 10;
             DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOut))
+            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
             {
                 try
                 {
@@ -151,7 +148,7 @@ namespace SeleniumFramework.PageObjects
                 }
             }
 
-            throw new Exception($"Not able to get .Text from element <{locator}> within {timeOut}s.");
+            throw new Exception($"Not able to get .Text from element <{locator}> within {timeOutSeconds}s.");
         }
 
         /// <summary>
@@ -161,9 +158,9 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The value of the element.</returns>
         public virtual string GetValue(By locator)
         {
-            int timeOut = 10;
+            int timeOutSeconds = 10;
             DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOut))
+            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
             {
                 try
                 {
@@ -175,20 +172,20 @@ namespace SeleniumFramework.PageObjects
                 }
             }
 
-            throw new Exception($"Not able to get 'value' from element <{locator}> within {timeOut}s.");
+            throw new Exception($"Not able to get 'value' from element <{locator}> within {timeOutSeconds}s.");
         }
 
         /// <summary>
         /// Determines if an element is displayed with an optional wait.
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
-        /// <param name="timeOut">[Optional] How long to wait for the element in seconds. The default timeOut is 10s.</param>
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>true if displayed, false otherwise</returns>
-        public virtual bool IsElementDisplayed(By locator, int timeOut = 10)
+        public virtual bool IsElementDisplayed(By locator, int timeOutSeconds = 10)
         {
             try
             {
-                FindElement(ExpectedConditions.ElementIsVisible(locator), timeOut);
+                FindElement(ExpectedConditions.ElementIsVisible(locator), timeOutSeconds);
 
                 return true;
             }
@@ -204,13 +201,13 @@ namespace SeleniumFramework.PageObjects
         /// <param name="locator">The locator used to find the element.</param>
         /// <param name="dropDownVal"></param>
         /// <param name="selectBy"></param>
-        /// <param name="timeOut">How long to wait for the element in seconds (optional). The default timeOut is 10s.</param>
+        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <param name="waitForStale">If true, waits for the dropdown to go stale after setting the desired value. This is useful for those dropdowns that refresh the page after being set.</param>
         /// <param name="verify">[Optional] If true, verifies that the value selected is equal to the desired value. If false, the validation is skipped.</param>
-        //public virtual void SelectOption(By locator, string dropDownVal, SelectBy selectBy, int timeOut = 10, bool waitForStale = false, bool verify = true)
+        //public virtual void SelectOption(By locator, string dropDownVal, SelectBy selectBy, int timeOutSeconds = 10, bool waitForStale = false, bool verify = true)
         //{
         //    IWebElement element = FindElement(locator);
-
+        //
         //    switch (selectBy)
         //    {
         //        case SelectBy.Index:
