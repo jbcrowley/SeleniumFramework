@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SeleniumFramework.TestData
+﻿namespace SeleniumFramework.TestData
 {
     interface ITestData
     {
