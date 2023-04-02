@@ -48,7 +48,7 @@ namespace SeleniumFramework.Utils
         }
 
         /// <summary>
-        /// Gets the landing URL, the site all tests will start on.
+        /// Gets the landing URL, the URL all tests will start on.
         /// </summary>
         /// <returns>The landing URL.</returns>
         public static string GetLandingUrl()
@@ -56,14 +56,14 @@ namespace SeleniumFramework.Utils
             if (LandingUrl == null)
             {
                 IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
-                string landingUrl = GetBaseUrl() + config.GetValue<string>($"Urls:LandingUrl");
+                string path = config.GetValue<string>($"Urls:Path");
 
-                if (string.IsNullOrEmpty(landingUrl))
+                if (string.IsNullOrEmpty(path))
                 {
-                    throw new ArgumentException($"{nameof(landingUrl)} is not defined in appsettings.json.");
+                    throw new ArgumentException($"'{nameof(path)}' is not defined in appsettings.json.");
                 }
 
-                LandingUrl = landingUrl;
+                LandingUrl = GetBaseUrl() + path;
             }
 
             return LandingUrl;
