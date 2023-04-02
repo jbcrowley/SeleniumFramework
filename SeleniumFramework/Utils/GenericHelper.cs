@@ -60,7 +60,7 @@ namespace SeleniumFramework.Utils
 
                 if (string.IsNullOrEmpty(landingUrl))
                 {
-                    throw new ArgumentException($"LandingUrl is not defined in appsettings.json.");
+                    throw new ArgumentException($"{nameof(landingUrl)} is not defined in appsettings.json.");
                 }
 
                 LandingUrl = landingUrl;
