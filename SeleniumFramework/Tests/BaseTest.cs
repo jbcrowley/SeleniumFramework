@@ -2,8 +2,10 @@ using Newtonsoft.Json;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
+using SeleniumFramework.Common;
 using SeleniumFramework.TestData;
 using SeleniumFramework.Utils;
+using Logger = SeleniumFramework.Utils.Logger;
 
 namespace SeleniumFramework.Tests
 {
@@ -37,7 +39,7 @@ namespace SeleniumFramework.Tests
         [OneTimeSetUp]
         public virtual void OneTimeSetup()
         {
-            Url = GenericHelper.GetLandingUrl();
+            Url = EnvironmentManager.LandingUrl;
         }
 
         [SetUp]
@@ -60,7 +62,7 @@ namespace SeleniumFramework.Tests
             }
             catch (WebDriverException e)
             {
-                GenericHelper.Log($"DOM may not be ready, debug info not added: {e.Message}");
+                Logger.Log($"DOM may not be ready, debug info not added: {e.Message}");
             }
             finally
             {
