@@ -17,9 +17,9 @@ namespace SeleniumFramework.Tests
         public ThreadLocal<IWebDriver> Driver = new ThreadLocal<IWebDriver>();
 
         /// <summary>
-        /// The path to the GlobalData.json file.
+        /// The path to the globaldata.json file.
         /// </summary>
-        public static string GlobalDataPath = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory) + @"\GlobalData.json";
+        public static string GlobalDataPath = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory) + @"\globaldata.json";
 
         /// <summary>
         /// Holds the global data from the JSON file.

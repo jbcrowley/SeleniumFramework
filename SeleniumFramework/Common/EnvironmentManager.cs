@@ -22,11 +22,12 @@ namespace SeleniumFramework.Common
             {
                 if (baseUrl == null)
                 {
-                    string url = Configuration.GetValue<string>($"Urls:{Environment}Url");
+                    string configPath = "Urls:Url";
+                    string url = Configuration.GetValue<string>(configPath);
 
                     if (string.IsNullOrEmpty(url))
                     {
-                        throw new ArgumentException($"The <{Environment}> environment does not have a URL defined in appsettings.json.");
+                        throw new ArgumentException($"There is no '{configPath}' defined in appsettings.{Environment}.json.");
                     }
 
                     baseUrl = url;
@@ -45,7 +46,10 @@ namespace SeleniumFramework.Common
             {
                 if (configuration == null)
                 {
-                    configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+                    configuration = new ConfigurationBuilder()
+                                        .AddJsonFile("appsettings.general.json")
+                                        .AddJsonFile($"appsettings.{Environment}.json")
+                                        .AddEnvironmentVariables().Build();
                 }
 
                 return configuration;
@@ -69,7 +73,7 @@ namespace SeleniumFramework.Common
                     }
                     else
                     {
-                        throw new ArgumentException($"<{environmentValue}> is not a defined Environment.");
+                        throw new ArgumentException($"<{environmentValue}> is not a defined environment.");
                     }
                 }
 
@@ -86,11 +90,12 @@ namespace SeleniumFramework.Common
             {
                 if (landingUrl == null)
                 {
-                    string path = Configuration.GetValue<string>($"Urls:Path");
+                    string configPath = "Urls:Path";
+                    string path = Configuration.GetValue<string>(configPath);
 
                     if (string.IsNullOrEmpty(path))
                     {
-                        throw new ArgumentException($"'{nameof(path)}' is not defined in appsettings.json.");
+                        throw new ArgumentException($"There is no '{configPath}' defined in appsettings.general.json.");
                     }
 
                     landingUrl = BaseUrl + path;
