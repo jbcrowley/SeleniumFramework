@@ -22,7 +22,7 @@ namespace SeleniumFramework.Common
             {
                 if (baseUrl == null)
                 {
-                    string configPath = "Urls:Url";
+                    string configPath = "Urls:BaseUrl";
                     string url = Configuration.GetValue<string>(configPath);
 
                     if (string.IsNullOrEmpty(url))
@@ -90,7 +90,7 @@ namespace SeleniumFramework.Common
             {
                 if (landingUrl == null)
                 {
-                    string configPath = "Urls:Path";
+                    string configPath = "Urls:LandingUrl";
                     string path = Configuration.GetValue<string>(configPath);
 
                     if (string.IsNullOrEmpty(path))
