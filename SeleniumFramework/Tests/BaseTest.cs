@@ -9,13 +9,8 @@ using Logger = SeleniumFramework.Utils.Logger;
 
 namespace SeleniumFramework.Tests
 {
-    public class BaseTest
+    public class BaseTest : DriverManager
     {
-        /// <summary>
-        /// The thread-safe driver instance.
-        /// </summary>
-        public ThreadLocal<IWebDriver> Driver = new ThreadLocal<IWebDriver>();
-
         /// <summary>
         /// The path to the globaldata.json file.
         /// </summary>
@@ -45,9 +40,9 @@ namespace SeleniumFramework.Tests
         [SetUp]
         public void Setup()
         {
-            Driver.Value = WebDriverHelper.GetDriver();
-            Driver.Value.Url = Url;
-            Driver.Value.Manage().Window.Maximize();
+            // new DriverManager().CreateDriverInstance();
+            DriverInstance.Url = Url;
+            DriverInstance.Manage().Window.Maximize();
         }
 
         [TearDown]
@@ -57,7 +52,7 @@ namespace SeleniumFramework.Tests
             {
                 if (!Equals(TestExecutionContext.CurrentContext.CurrentResult.ResultState, ResultState.Success))
                 {
-                    GenericHelper.TakeScreenshot(Driver.Value);
+                    GenericHelper.TakeScreenshot(DriverInstance);
                 }
             }
             catch (WebDriverException e)
@@ -66,7 +61,7 @@ namespace SeleniumFramework.Tests
             }
             finally
             {
-                Driver.Value?.Quit();
+                DriverInstance.Quit();
             }
         }
     }

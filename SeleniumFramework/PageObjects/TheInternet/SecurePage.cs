@@ -6,10 +6,6 @@ namespace SeleniumFramework.PageObjects.TheInternet
     {
         private readonly By _logoutButtonLocator = By.CssSelector("a[href='/logout']");
 
-        public SecurePage(IWebDriver driver) : base(driver)
-        {
-        }
-
         /// <summary>
         /// Clicks the Logout button.
         /// </summary>

@@ -8,10 +8,6 @@ namespace SeleniumFramework.PageObjects.TheInternet
         private readonly By _passwordLocator = By.Id("password");
         private readonly By _usernameLocator = By.Id("username");
 
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         /// <summary>
         /// Logs in with the provided username and password.
         /// </summary>
@@ -19,6 +15,7 @@ namespace SeleniumFramework.PageObjects.TheInternet
         /// <param name="password">The password.</param>
         public void Login(string username, string password)
         {
+            Console.WriteLine(DriverInstance.Url);
             SendKeys(_usernameLocator, username);
             SendKeys(_passwordLocator, password);
             Click(_loginButtonLocator);
