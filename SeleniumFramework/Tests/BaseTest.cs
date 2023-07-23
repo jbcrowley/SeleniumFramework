@@ -1,11 +1,6 @@
 using Newtonsoft.Json;
-using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium;
-using SeleniumFramework.Common;
 using SeleniumFramework.TestData;
-using SeleniumFramework.Utils;
-using Logger = SeleniumFramework.Utils.Logger;
 
 namespace SeleniumFramework.Tests
 {
@@ -34,40 +29,12 @@ namespace SeleniumFramework.Tests
         /// <summary>
         /// Holds the URL for the landing page.
         /// </summary>
-        public string Url;
+        public static string Url;
 
-        [OneTimeSetUp]
-        public virtual void OneTimeSetup()
-        {
-            Url = EnvironmentManager.LandingUrl;
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            Driver.Value = WebDriverHelper.GetDriver();
-            Driver.Value.Url = Url;
-            Driver.Value.Manage().Window.Maximize();
-        }
-
-        [TearDown]
-        public virtual void TearDown()
-        {
-            try
-            {
-                if (!Equals(TestExecutionContext.CurrentContext.CurrentResult.ResultState, ResultState.Success))
-                {
-                    GenericHelper.TakeScreenshot(Driver.Value);
-                }
-            }
-            catch (WebDriverException e)
-            {
-                Logger.Log($"DOM may not be ready, debug info not added: {e.Message}");
-            }
-            finally
-            {
-                Driver.Value?.Quit();
-            }
-        }
+        //[OneTimeSetUp]
+        //public virtual void OneTimeSetup()
+        //{
+        //    Url = EnvironmentManager.LandingUrl;
+        //}
     }
 }

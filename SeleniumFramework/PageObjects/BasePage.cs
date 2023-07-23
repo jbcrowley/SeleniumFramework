@@ -1,18 +1,12 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumFramework.Utils;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SeleniumFramework.PageObjects
 {
     public class BasePage
     {
-        protected IWebDriver Driver;
-
-        public BasePage(IWebDriver driver)
-        {
-            Driver = driver;
-        }
-
         /// <summary>
         /// Clicks the element.
         /// </summary>
@@ -25,7 +19,7 @@ namespace SeleniumFramework.PageObjects
             {
                 try
                 {
-                    new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+                    new WebDriverWait(Driver.WebDriver, TimeSpan.FromSeconds(timeOutSeconds)).Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
 
                     return;
                 }
@@ -51,7 +45,7 @@ namespace SeleniumFramework.PageObjects
             {
                 try
                 {
-                    new WebDriverWait(Driver, TimeSpan.FromSeconds(10)).Until(ExpectedConditions.ElementIsVisible(locator)).SendKeys(text);
+                    new WebDriverWait(Driver.WebDriver, TimeSpan.FromSeconds(10)).Until(ExpectedConditions.ElementIsVisible(locator)).SendKeys(text);
 
                     return;
                 }
@@ -81,7 +75,7 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The found element.</returns>
         public virtual IWebElement FindElement(By locator)
         {
-            return Driver.FindElement(locator);
+            return Driver.WebDriver.FindElement(locator);
         }
 
         /// <summary>
@@ -92,7 +86,7 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The found element.</returns>
         public virtual IWebElement FindElement(Func<IWebDriver, IWebElement> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
+            return new WebDriverWait(Driver.WebDriver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>
@@ -102,7 +96,7 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The collection of elements.</returns>
         public virtual IReadOnlyCollection<IWebElement> FindElements(By locator)
         {
-            return Driver.FindElements(locator);
+            return Driver.WebDriver.FindElements(locator);
         }
 
         /// <summary>
@@ -113,7 +107,7 @@ namespace SeleniumFramework.PageObjects
         /// <returns>true if the waitCondition succeeds, false otherwise.</returns>
         public virtual bool FindElements(Func<IWebDriver, bool> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
+            return new WebDriverWait(Driver.WebDriver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>
@@ -124,7 +118,7 @@ namespace SeleniumFramework.PageObjects
         /// <returns>The collection of found elements.</returns>
         public virtual IReadOnlyCollection<IWebElement> FindElements(Func<IWebDriver, IReadOnlyCollection<IWebElement>> waitCondition, int timeOutSeconds = 10)
         {
-            return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
+            return new WebDriverWait(Driver.WebDriver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
 
         /// <summary>

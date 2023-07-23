@@ -8,7 +8,7 @@ namespace SeleniumFramework.PageObjects.TheInternet
         private readonly By _passwordLocator = By.Id("password");
         private readonly By _usernameLocator = By.Id("username");
 
-        public LoginPage(IWebDriver driver) : base(driver)
+        public LoginPage()
         {
         }
 

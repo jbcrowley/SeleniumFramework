@@ -4,7 +4,7 @@ using OpenQA.Selenium.Edge;
 
 namespace SeleniumFramework.Utils
 {
-    class WebDriverHelper
+    class DriverFactory
     {
         /// <summary>
         /// Gets the name of the browser from the NUnit TestContext.

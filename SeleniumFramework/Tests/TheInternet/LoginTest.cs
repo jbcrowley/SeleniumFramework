@@ -11,9 +11,9 @@ namespace SeleniumFramework.Tests.TheInternet
             string username = TestData["username"];
             string password = TestData["password"];
 
-            new LoginPage(Driver.Value).Login(username, password);
+            new LoginPage().Login(username, password);
 
-            new SecurePage(Driver.Value).Logout();
+            new SecurePage().Logout();
 
             Assert.AreEqual(Url, Driver.Value.Url, "Verify login URL");
         }
