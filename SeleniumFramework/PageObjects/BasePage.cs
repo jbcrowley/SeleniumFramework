@@ -69,7 +69,7 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <returns>true if the element exists, false otherwise.</returns>
-        public virtual bool ElementExists(By locator)
+        public bool ElementExists(By locator)
         {
             return FindElements(locator).Any();
         }
@@ -79,7 +79,7 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <returns>The found element.</returns>
-        public virtual IWebElement FindElement(By locator)
+        public IWebElement FindElement(By locator)
         {
             return Driver.FindElement(locator);
         }
@@ -90,7 +90,7 @@ namespace SeleniumFramework.PageObjects
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns an IWebElement.</param>
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>The found element.</returns>
-        public virtual IWebElement FindElement(Func<IWebDriver, IWebElement> waitCondition, int timeOutSeconds = 10)
+        public IWebElement FindElement(Func<IWebDriver, IWebElement> waitCondition, int timeOutSeconds = 10)
         {
             return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
@@ -100,7 +100,7 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <returns>The collection of elements.</returns>
-        public virtual IReadOnlyCollection<IWebElement> FindElements(By locator)
+        public IReadOnlyCollection<IWebElement> FindElements(By locator)
         {
             return Driver.FindElements(locator);
         }
@@ -111,7 +111,7 @@ namespace SeleniumFramework.PageObjects
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns a boolean.</param>
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>true if the waitCondition succeeds, false otherwise.</returns>
-        public virtual bool FindElements(Func<IWebDriver, bool> waitCondition, int timeOutSeconds = 10)
+        public bool FindElements(Func<IWebDriver, bool> waitCondition, int timeOutSeconds = 10)
         {
             return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
@@ -122,7 +122,7 @@ namespace SeleniumFramework.PageObjects
         /// <param name="waitCondition">The wait condition can be an ExpectedCondition or a custom wait that returns a collection of IWebElement.</param>
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>The collection of found elements.</returns>
-        public virtual IReadOnlyCollection<IWebElement> FindElements(Func<IWebDriver, IReadOnlyCollection<IWebElement>> waitCondition, int timeOutSeconds = 10)
+        public IReadOnlyCollection<IWebElement> FindElements(Func<IWebDriver, IReadOnlyCollection<IWebElement>> waitCondition, int timeOutSeconds = 10)
         {
             return new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutSeconds)).Until(waitCondition);
         }
@@ -132,7 +132,7 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <returns>The text contained in the element.</returns>
-        public virtual string GetText(By locator)
+        public string GetText(By locator)
         {
             int timeOutSeconds = 10;
             DateTime now = DateTime.Now;
@@ -156,7 +156,7 @@ namespace SeleniumFramework.PageObjects
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <returns>The value of the element.</returns>
-        public virtual string GetValue(By locator)
+        public string GetValue(By locator)
         {
             int timeOutSeconds = 10;
             DateTime now = DateTime.Now;
@@ -181,7 +181,7 @@ namespace SeleniumFramework.PageObjects
         /// <param name="locator">The By locator for the desired element.</param>
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         /// <returns>true if displayed, false otherwise</returns>
-        public virtual bool IsElementDisplayed(By locator, int timeOutSeconds = 10)
+        public bool IsElementDisplayed(By locator, int timeOutSeconds = 10)
         {
             try
             {
@@ -194,35 +194,5 @@ namespace SeleniumFramework.PageObjects
                 return false;
             }
         }
-
-        /// <summary>
-        /// Locates a SELECT element and selects an option by index, text or value.
-        /// </summary>
-        /// <param name="locator">The locator used to find the element.</param>
-        /// <param name="dropDownVal"></param>
-        /// <param name="selectBy"></param>
-        /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
-        /// <param name="waitForStale">If true, waits for the dropdown to go stale after setting the desired value. This is useful for those dropdowns that refresh the page after being set.</param>
-        /// <param name="verify">[Optional] If true, verifies that the value selected is equal to the desired value. If false, the validation is skipped.</param>
-        //public virtual void SelectOption(By locator, string dropDownVal, SelectBy selectBy, int timeOutSeconds = 10, bool waitForStale = false, bool verify = true)
-        //{
-        //    IWebElement element = FindElement(locator);
-        //
-        //    switch (selectBy)
-        //    {
-        //        case SelectBy.Index:
-        //            element.ComboBox().SelectByIndex(int.Parse(dropDownVal));
-        //            break;
-        //        case SelectBy.Text:
-        //            element.ComboBox().SelectByText(dropDownVal);
-        //            break;
-        //        case SelectBy.PartialText:
-        //            element.ComboBox().SelectByText(dropDownVal, true);
-        //            break;
-        //        case SelectBy.Value:
-        //            element.ComboBox().SelectByValue(dropDownVal);
-        //            break;
-        //    }
-        //}
     }
 }
