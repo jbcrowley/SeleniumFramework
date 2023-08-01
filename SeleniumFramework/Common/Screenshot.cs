@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 
-namespace SeleniumFramework.Utils
+namespace SeleniumFramework.Common
 {
-    public class GenericHelper
+    public class Screenshot
     {
         /// <summary>
         /// Takes a screenshot and attaches it to the current NUnit TestContext.
@@ -10,7 +10,9 @@ namespace SeleniumFramework.Utils
         /// <param name="driver">The current IWebDriver instance.</param>
         public static void TakeScreenshot(IWebDriver driver)
         {
-            // TODO: Write screenshot code
+            string fullFilePath = $"{Utils.GenerateLogPath()}.png";
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fullFilePath, ScreenshotImageFormat.Png);
+            TestContext.AddTestAttachment(fullFilePath);
         }
     }
 }
