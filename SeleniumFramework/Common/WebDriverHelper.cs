@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 
-namespace SeleniumFramework.Utils
+namespace SeleniumFramework.Common
 {
     class WebDriverHelper
     {

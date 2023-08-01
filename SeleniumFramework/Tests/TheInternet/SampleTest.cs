@@ -1,4 +1,4 @@
-﻿using SeleniumFramework.Utils;
+﻿using SeleniumFramework.Common;
 
 namespace SeleniumFramework.Tests.TheInternet
 {

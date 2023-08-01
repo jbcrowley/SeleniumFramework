@@ -4,8 +4,8 @@ using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SeleniumFramework.Common;
 using SeleniumFramework.TestData;
-using SeleniumFramework.Utils;
-using Logger = SeleniumFramework.Utils.Logger;
+using Logger = SeleniumFramework.Common.Logger;
+using Screenshot = SeleniumFramework.Common.Screenshot;
 
 namespace SeleniumFramework.Tests
 {
@@ -37,7 +37,7 @@ namespace SeleniumFramework.Tests
         public string Url;
 
         [OneTimeSetUp]
-        public virtual void OneTimeSetup()
+        public void OneTimeSetup()
         {
             Url = EnvironmentManager.LandingUrl;
         }
@@ -51,23 +51,23 @@ namespace SeleniumFramework.Tests
         }
 
         [TearDown]
-        public virtual void TearDown()
+        public void TearDown()
         {
-            try
+            if (TestExecutionContext.CurrentContext.CurrentResult.ResultState != ResultState.Success)
             {
-                if (!Equals(TestExecutionContext.CurrentContext.CurrentResult.ResultState, ResultState.Success))
+                try
                 {
-                    GenericHelper.TakeScreenshot(Driver.Value);
+                    Screenshot.TakeScreenshot(Driver.Value);
+                }
+                catch (WebDriverException e)
+                {
+                    Logger.Log($"DOM may not be ready, debug info not added: {e.Message}");
                 }
             }
-            catch (WebDriverException e)
-            {
-                Logger.Log($"DOM may not be ready, debug info not added: {e.Message}");
-            }
-            finally
-            {
-                Driver.Value?.Quit();
-            }
+
+            Logger.AttachLog();
+
+            Driver.Value?.Quit();
         }
     }
 }
