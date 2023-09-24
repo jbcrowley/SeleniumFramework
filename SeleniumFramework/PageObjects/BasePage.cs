@@ -20,8 +20,8 @@ namespace SeleniumFramework.PageObjects
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         public void Click(By locator, int timeOutSeconds = 10)
         {
-            DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
+            DateTime expire = DateTime.Now.AddSeconds(timeOutSeconds);
+            while (DateTime.Now < expire)
             {
                 try
                 {
@@ -46,8 +46,8 @@ namespace SeleniumFramework.PageObjects
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
         public void SendKeys(By locator, string text, int timeOutSeconds = 10)
         {
-            DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
+            DateTime expire = DateTime.Now.AddSeconds(timeOutSeconds);
+            while (DateTime.Now < expire)
             {
                 try
                 {
@@ -135,8 +135,8 @@ namespace SeleniumFramework.PageObjects
         public string GetText(By locator)
         {
             int timeOutSeconds = 10;
-            DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
+            DateTime expire = DateTime.Now.AddSeconds(timeOutSeconds);
+            while (DateTime.Now < expire)
             {
                 try
                 {
@@ -159,8 +159,8 @@ namespace SeleniumFramework.PageObjects
         public string GetValue(By locator)
         {
             int timeOutSeconds = 10;
-            DateTime now = DateTime.Now;
-            while (DateTime.Now < now.AddSeconds(timeOutSeconds))
+            DateTime expire = DateTime.Now.AddSeconds(timeOutSeconds);
+            while (DateTime.Now < expire)
             {
                 try
                 {
