@@ -8,9 +8,9 @@ namespace SeleniumFramework.Tests.TheInternet
         [Category("Select")]
         public void SelectElement()
         {
-            Driver.Value!.Url = "http://the-internet.herokuapp.com/dropdown";
+            string option = "Option 2";
 
-            string option = "Option 3";
+            Driver.Value!.Url = "http://the-internet.herokuapp.com/dropdown";
             DropdownPage dropdownPage = new DropdownPage(Driver.Value!);
             dropdownPage.ChooseByText(option);
 
