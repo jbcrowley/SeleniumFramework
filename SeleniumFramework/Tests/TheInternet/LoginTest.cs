@@ -15,7 +15,7 @@ namespace SeleniumFramework.Tests.TheInternet
 
             new SecurePage(Driver.Value).Logout();
 
-            Assert.AreEqual(Url, Driver.Value.Url, "Verify login URL");
+            Assert.That(Driver.Value.Url, Is.EqualTo(Url), "Verify login URL");
         }
     }
 }

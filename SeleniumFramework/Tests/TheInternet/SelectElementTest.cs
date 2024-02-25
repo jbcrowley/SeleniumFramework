@@ -14,7 +14,7 @@ namespace SeleniumFramework.Tests.TheInternet
             DropdownPage dropdownPage = new DropdownPage(Driver.Value);
             dropdownPage.ChooseByText(option);
 
-            Assert.AreEqual(option, dropdownPage.GetSelectedOption(), "Verify selected OPTION");
+            Assert.That(dropdownPage.GetSelectedOption(), Is.EqualTo(option), "Verify selected OPTION");
         }
     }
 }

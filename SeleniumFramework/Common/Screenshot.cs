@@ -11,7 +11,7 @@ namespace SeleniumFramework.Common
         public static void TakeScreenshot(IWebDriver driver)
         {
             string fullFilePath = $"{Utils.GenerateLogPath()}.png";
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fullFilePath, ScreenshotImageFormat.Png);
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fullFilePath);
             TestContext.AddTestAttachment(fullFilePath);
         }
     }
