@@ -8,13 +8,13 @@ namespace SeleniumFramework.Tests.TheInternet
         [Category("Select")]
         public void SelectElement()
         {
-            Driver.Value.Url = "http://the-internet.herokuapp.com/dropdown";
+            string option = "Option 2";
 
-            string option = "Option 3";
-            DropdownPage dropdownPage = new DropdownPage(Driver.Value);
+            Driver.Value!.Url = "http://the-internet.herokuapp.com/dropdown";
+            DropdownPage dropdownPage = new DropdownPage(Driver.Value!);
             dropdownPage.ChooseByText(option);
 
-            Assert.AreEqual(option, dropdownPage.GetSelectedOption(), "Verify selected OPTION");
+            Assert.That(dropdownPage.GetSelectedOption(), Is.EqualTo(option), "Verify selected OPTION");
         }
     }
 }
