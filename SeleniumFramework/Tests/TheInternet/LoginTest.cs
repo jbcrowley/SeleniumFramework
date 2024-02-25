@@ -11,11 +11,11 @@ namespace SeleniumFramework.Tests.TheInternet
             string username = TestData["username"];
             string password = TestData["password"];
 
-            new LoginPage(Driver.Value).Login(username, password);
+            new LoginPage(Driver.Value!).Login(username, password);
 
-            new SecurePage(Driver.Value).Logout();
+            new SecurePage(Driver.Value!).Logout();
 
-            Assert.That(Driver.Value.Url, Is.EqualTo(Url), "Verify login URL");
+            Assert.That(Driver.Value!.Url, Is.EqualTo(Url), "Verify login URL");
         }
     }
 }

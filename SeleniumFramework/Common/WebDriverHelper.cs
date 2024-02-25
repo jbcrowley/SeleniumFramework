@@ -12,7 +12,7 @@ namespace SeleniumFramework.Common
         /// <returns>The browser name.</returns>
         public static Browser GetBrowserFromTestContext()
         {
-            string browserValue = TestContext.Parameters.Get("browser");
+            string browserValue = TestContext.Parameters.Get("browser")!;
             if (Enum.TryParse(browserValue, true, out Browser browser))
             {
                 return browser;

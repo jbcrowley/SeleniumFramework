@@ -23,7 +23,7 @@ namespace SeleniumFramework.Common
                 if (baseUrl is null)
                 {
                     string configPath = "Urls:BaseUrl";
-                    string url = Configuration.GetValue<string>(configPath);
+                    string url = Configuration.GetValue<string>(configPath)!;
 
                     if (string.IsNullOrEmpty(url))
                     {
@@ -63,7 +63,7 @@ namespace SeleniumFramework.Common
         {
             get
             {
-                string environmentValue = TestContext.Parameters.Get("environment");
+                string environmentValue = TestContext.Parameters.Get("environment")!;
 
                 if (Enum.TryParse(environmentValue, true, out EnvironmentName environmentName))
                 {
@@ -91,7 +91,7 @@ namespace SeleniumFramework.Common
                 if (landingUrl is null)
                 {
                     string configPath = "Urls:LandingUrl";
-                    string path = Configuration.GetValue<string>(configPath);
+                    string path = Configuration.GetValue<string>(configPath)!;
 
                     if (string.IsNullOrEmpty(path))
                     {

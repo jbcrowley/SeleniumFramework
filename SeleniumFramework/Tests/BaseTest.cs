@@ -24,7 +24,7 @@ namespace SeleniumFramework.Tests
         /// <summary>
         /// Holds the global data from the JSON file.
         /// </summary>
-        public static Dictionary<string, string> GlobalData { get; } = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(GlobalDataPath));
+        public static Dictionary<string, string> GlobalData { get; } = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(GlobalDataPath))!;
 
         /// <summary>
         /// Holds the test data for the current running script.
@@ -57,7 +57,7 @@ namespace SeleniumFramework.Tests
             {
                 try
                 {
-                    Screenshot.TakeScreenshot(Driver.Value);
+                    Screenshot.TakeScreenshot(Driver.Value!);
                 }
                 catch (WebDriverException e)
                 {
