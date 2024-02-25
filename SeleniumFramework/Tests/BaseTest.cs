@@ -69,5 +69,11 @@ namespace SeleniumFramework.Tests
 
             Driver.Value?.Quit();
         }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            Driver.Dispose();
+        }
     }
 }
