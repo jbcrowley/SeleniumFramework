@@ -29,7 +29,7 @@ namespace SeleniumFramework.Tests
         /// <summary>
         /// Holds the test data for the current running script.
         /// </summary>
-        public Dictionary<string, string> TestData = new CsvTestData().GetTestData();
+        public Dictionary<string, string> TestData = new JsonTestDataHandler().GetTestData();
 
         /// <summary>
         /// Holds the URL for the landing page.

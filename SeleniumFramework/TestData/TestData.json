@@ -1,0 +1,21 @@
+﻿{
+  "Tests": [
+    {
+      "TestName": "LoginTest",
+      "Properties": [
+        {
+          "username": "tomsmith",
+          "password": "SuperSecretPassword!"
+        }
+      ]
+    },
+    {
+      "TestName": "SampleTest",
+      "Properties": [
+        {
+          "username": "MyUsername"
+        }
+      ]
+    }
+  ]
+}
