@@ -7,13 +7,26 @@
         /// </summary>
         public static void AttachLog()
         {
-            string fullFilePath = $"{Utils.GenerateLogPath()}.txt";
+            string fullFilePath = $"{GenerateLogPath()}.txt";
             // TODO: Write errors to log and attach to TestContext
             using (StreamWriter outputFile = new(fullFilePath))
             {
                 outputFile.WriteLine("test");
             }
             TestContext.AddTestAttachment(fullFilePath);
+        }
+
+        /// <summary>
+        /// Returns a datetime stamped path in the \Logs folder.
+        /// </summary>
+        /// <returns>The full file path to the log file.</returns>
+        public static string GenerateLogPath()
+        {
+            string path = $@"{Environment.GetEnvironmentVariable("USERPROFILE")}\Downloads\Logs";
+            Directory.CreateDirectory(path);
+            string filename = $"{TestContext.CurrentContext.Test.Name}_{DateTime.Now:yyyy.dd.MM_HH.mm.ss.fff}";
+
+            return Path.Combine(path, filename);
         }
 
         /// <summary>

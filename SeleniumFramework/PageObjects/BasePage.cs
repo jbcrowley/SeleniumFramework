@@ -176,11 +176,11 @@ namespace SeleniumFramework.PageObjects
         }
 
         /// <summary>
-        /// Determines if an element is displayed with an optional wait.
+        /// Determines if an element is displayed after a wait.
         /// </summary>
         /// <param name="locator">The By locator for the desired element.</param>
         /// <param name="timeOutSeconds">[Optional] How long to wait for the element. The default is 10.</param>
-        /// <returns>true if displayed, false otherwise</returns>
+        /// <returns>true if displayed, false otherwise.</returns>
         public bool IsElementDisplayed(By locator, int timeOutSeconds = 10)
         {
             try

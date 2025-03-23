@@ -46,8 +46,8 @@ namespace SeleniumFramework.Tests
         public void Setup()
         {
             Driver.Value = WebDriverHelper.GetDriver();
-            Driver.Value.Url = Url;
             Driver.Value.Manage().Window.Maximize();
+            Driver.Value.Url = Url;
         }
 
         [TearDown]
