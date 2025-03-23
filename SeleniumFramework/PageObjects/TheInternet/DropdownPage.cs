@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using BasePage.Extensions;
+using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using SeleniumFramework.Common;
+using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace SeleniumFramework.PageObjects.TheInternet
 {
@@ -15,9 +17,9 @@ namespace SeleniumFramework.PageObjects.TheInternet
         /// <summary>
         /// Choose an OPTION by text.
         /// </summary>
-        public void ChooseByText(string option)
+        public void ChooseByText(Option option)
         {
-            FindElement(ExpectedConditions.ElementIsVisible(_dropdownLocator)).Select().SelectByText(option);
+            FindElement(ExpectedConditions.ElementIsVisible(_dropdownLocator)).Select().SelectByText(option.GetDescription());
         }
 
         /// <summary>
@@ -27,6 +29,17 @@ namespace SeleniumFramework.PageObjects.TheInternet
         public string GetSelectedOption()
         {
             return FindElement(ExpectedConditions.ElementIsVisible(_dropdownLocator)).Select().SelectedOption.Text;
+        }
+
+        /// <summary>
+        /// The list of dropdown options.
+        /// </summary>
+        public enum Option
+        {
+            [Description("Option 1")]
+            Option1,
+            [Description("Option 2")]
+            Option2
         }
     }
 }

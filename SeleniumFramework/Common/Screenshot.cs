@@ -10,7 +10,7 @@ namespace SeleniumFramework.Common
         /// <param name="driver">The current IWebDriver instance.</param>
         public static void TakeScreenshot(IWebDriver driver)
         {
-            string fullFilePath = $"{Utils.GenerateLogPath()}.png";
+            string fullFilePath = $"{Logger.GenerateLogPath()}.png";
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(fullFilePath);
             TestContext.AddTestAttachment(fullFilePath);
         }

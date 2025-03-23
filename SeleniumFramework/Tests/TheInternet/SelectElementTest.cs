@@ -1,4 +1,6 @@
-﻿using SeleniumFramework.PageObjects.TheInternet;
+﻿using BasePage.Extensions;
+using SeleniumFramework.PageObjects.TheInternet;
+using static SeleniumFramework.PageObjects.TheInternet.DropdownPage;
 
 namespace SeleniumFramework.Tests.TheInternet
 {
@@ -8,13 +10,13 @@ namespace SeleniumFramework.Tests.TheInternet
         [Category("Select")]
         public void SelectElement()
         {
-            string option = "Option 2";
+            Option option = Option.Option2;
 
             Driver.Value!.Url = "http://the-internet.herokuapp.com/dropdown";
             DropdownPage dropdownPage = new DropdownPage(Driver.Value!);
             dropdownPage.ChooseByText(option);
 
-            Assert.That(dropdownPage.GetSelectedOption(), Is.EqualTo(option), "Verify selected OPTION");
+            Assert.That(dropdownPage.GetSelectedOption(), Is.EqualTo(option.GetDescription()), "Verify selected OPTION");
         }
     }
 }
